@@ -113,13 +113,13 @@ $post-h-bottom-border-color = alpha($text-color-3, 0.15)
 // ==============================================================================================
 // theme dark mode color
 // ==============================================================================================
-$dark-background-color-1 = #22272e
+$dark-background-color-1 = #383940
 $dark-background-color-1-transparent = alpha($dark-background-color-1, 0.6)
 $dark-background-color-2 = lighten($dark-background-color-1, 4%)
 $dark-background-color-3 = lighten($dark-background-color-1, 8%)
 $dark-content-background-color = darken($dark-background-color-1, 2%)
 
-$dark-text-color-3 = #adbac5
+$dark-text-color-3 = #bebec6
 $dark-text-color-1 = lighten($dark-text-color-3, 12%)
 $dark-text-color-2 = lighten($dark-text-color-3, 6%)
 $dark-text-color-4 = darken($dark-text-color-3, 30%)
@@ -155,3 +155,16 @@ $dark-article-aging-tips-background-color = alpha($dark-article-aging-tips-color
 $dark-article-aging-tips-border-color = alpha($dark-article-aging-tips-color, 0.6)
 
 $dark-post-h-bottom-border-color = alpha($dark-text-color-3, 0.15)
+
+
+//first screen settings
+
+$temp-img = hexo-config('style.first_screen.background_img')
+$first-screen-img = $temp-img ? $temp-img : '/images/bg.svg'
+$dark-temp-img = hexo-config('style.first_screen.background_img_dark')
+$dark-first-screen-img = $dark-temp-img ? $dark-temp-img : '/images/bg.svg'
+
+$temp-font-color = hexo-config('style.first_screen.font_color')
+$first-screen-font-color = $temp-font-color ? convert($temp-font-color) : $text-color-3
+$dark-temp-font-color = hexo-config('style.first_screen.font_color_dark')
+$dark-first-screen-font-color = $dark-temp-font-color ? convert($dark-temp-font-color) : $dark-text-color-3

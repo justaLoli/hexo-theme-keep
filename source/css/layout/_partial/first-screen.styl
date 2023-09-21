@@ -1,17 +1,21 @@
-if (hexo-config('style') && hexo-config('style.first_screen')) {
-  $temp-img = hexo-config('style.first_screen.background_img')
-}
-else {
-  $temp-img = ''
-}
+// if (hexo-config('style') && hexo-config('style.first_screen')) {
+//   $temp-img = hexo-config('style.first_screen.background_img')
+// }
+// else {
+//   $temp-img = ''
+// }
 
-$first-screen-img = $temp-img ? $temp-img : '/images/bg.svg'
+
+
+$first-screen-img = var(--firstscreen-background-img)
+
+$first-screen-font-color = var(--firstscreen-font-color)
 
 .first-screen-container {
   width 100%
   height 100vh
   overflow hidden
-  background url($first-screen-img) center center / cover no-repeat
+  background $first-screen-img center center / cover no-repeat
 
   if (hexo-config('style') && hexo-config('style.first_screen') && !(hexo-config('style.first_screen.header_transparent') == true)) {
     background-position-y var(--header-height)
@@ -44,23 +48,23 @@ $first-screen-img = $temp-img ? $temp-img : '/images/bg.svg'
     }
 
     .description {
-      color var(--first-screen-font-color-light)
+      color $first-screen-font-color
       font-weight bold
       font-size var(--first-screen-font-size)
       line-height 1.8
       text-align center
 
       .dark-mode & {
-        color var(--first-screen-font-color-dark)
+        color $first-screen-font-color
 
         .desc-item {
-          color var(--first-screen-font-color-dark)
+          color $first-screen-font-color
         }
       }
 
 
       .desc-item {
-        color var(--first-screen-font-color-light)
+        color $first-screen-font-color
       }
 
 

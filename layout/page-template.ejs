@@ -9,9 +9,6 @@ const is_render_friends_link = (
 %>
 <div class="fade-in-down-animation">
     <div class="page-template-container border-box">
-        <% if (is_render_friends_link) { %>
-            <%- partial('_partial/friends-link') %>
-        <% } %>
         <div class="page-template-content border-box keep-markdown-body">
             <% if (is_render_friends_link || p_content) { %>
                 <%- p_content %>
@@ -23,6 +20,9 @@ const is_render_friends_link = (
             <div class="page-template-comments border-box">
                 <%- partial('_partial/comment/comment') %>
             </div>
+        <% } %>
+        <% if (is_render_friends_link) { %>
+            <%- partial('_partial/friends-link') %>
         <% } %>
     </div>
 </div>

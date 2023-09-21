@@ -64,6 +64,13 @@ keep-mobile() {
 
 
 root-color(mode) {
+  
+
+  //first screen background img
+  --firstscreen-background-img mode == 'light' ? url($first-screen-img) : url($dark-first-screen-img)
+  --firstscreen-font-color mode == 'light' ? $first-screen-font-color : $dark-first-screen-font-color
+
+
   // primary color
   --primary-color $primary-color
   --primary-color-light-1 $primary-color-light-1
