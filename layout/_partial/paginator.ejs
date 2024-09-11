@@ -8,9 +8,12 @@
 
 
         <div class="page-number-box border-box flex-center">
-            <span class="base-color-size"><%- page.current %></span>
-            <span class="delimiter base-color-size">/</span>
-            <span class="base-color-size"><%- page.total %></span>
+            <input class="page-number-input border-box base-color-size"
+                   type="number"
+                   value="<%- page.current %>"
+                   min="1"
+                   max="<%- page.total %>"
+            ><span class="delimiter base-color-size">/</span><span class="base-color-size"><%- page.total %></span>
         </div>
 
 

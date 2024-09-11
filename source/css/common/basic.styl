@@ -19,13 +19,13 @@
 
   &::-webkit-scrollbar {
     width 0.4rem
-    height 0.4rem
+    height 0.32rem
     transition all 0.2s ease
   }
 
   &::-webkit-scrollbar-thumb {
     background var(--scrollbar-color)
-    border-radius 0.1rem
+    border-radius 0.2rem
   }
 
   &::-webkit-scrollbar-track {
@@ -53,29 +53,19 @@ body {
   background var(--background-color-1)
 
   &::-webkit-scrollbar {
-    width 0.6rem
-    height 0.6rem
-  }
-
-  +keep-tablet() {
-    &::-webkit-scrollbar {
-      width 0.5rem
-      height 0.5rem
-    }
-  }
-
-  +keep-mobile() {
-    &::-webkit-scrollbar {
-      width 0.4rem
-      height 0.4rem
-    }
+    width 0.56rem
+    height 0.56rem
   }
 
   +keep-tablet() {
     font-size calc(var(--base-font-size) * 0.95) !important
     line-height calc(var(--base-line-height) * 0.95) !important
-  }
 
+    &::-webkit-scrollbar {
+      width 0.42rem
+      height 0.42rem
+    }
+  }
 
   +keep-mobile() {
     font-size calc(var(--base-font-size) * 0.9) !important
@@ -270,7 +260,9 @@ img {
   }
 }
 
-
+// ======================================================================
+// tooltip image
+// ======================================================================
 .tooltip-img {
   position relative
   box-sizing border-box
@@ -281,26 +273,43 @@ img {
     }
   }
 
+
   .tooltip-img-box {
     position absolute
     top -0.4rem
     left 50%
-    z-index $z-index-8
+    z-index $z-index-11
     display none
     align-items center
     justify-content center
     box-sizing border-box
     min-height 6rem
-    background var(--text-color-6)
-    border 0.2rem solid var(--text-color-3)
+    overflow hidden
+    background var(--background-color-3)
+    border 0.2rem solid var(--text-color-4)
     border-radius 0.3rem
     transform translateX(-50%) translateY(-100%)
     transition-t("display", "0", "0.2", "ease")
     disable-user-select()
 
+    &.has-tip {
+      flex-direction column
+      justify-content space-between
+    }
+
     img {
       display block
       max-height 10rem
+    }
+
+    .tip {
+      position relative
+      box-sizing border-box
+      width 100%
+      padding 0.3rem 0
+      color #555
+      font-size 0.9rem
+      text-align center
     }
   }
 }

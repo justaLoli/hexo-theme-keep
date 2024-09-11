@@ -2,7 +2,7 @@
 <main class="page-container border-box">
 
     <!-- home first screen  -->
-    <% if (is_home() && theme?.style?.first_screen?.enable === true && !page.prev) { %>
+    <% if (is_home() && theme?.first_screen?.enable === true && !page.prev) { %>
         <%- partial('_partial/first-screen') %>
     <% } %>
 
@@ -15,7 +15,6 @@
         <div class="page-main-content-middle border-box">
 
             <div class="main-content border-box">
-
                 <% if (is_home()) { %>
 
                     <%- partial('home-content') %>
@@ -26,7 +25,7 @@
 
                 <% } else if (is_post()) { %>
 
-                    <%- partial('article-content') %>
+                    <%- partial('post-content') %>
 
                 <% } else if (is_category()) { %>
 
@@ -43,6 +42,10 @@
                 <% } else if (page.title.toLowerCase() === 'tag' || page.title.toLowerCase() === 'tags') { %>
 
                     <%- partial('_partial/tagcloud') %>
+
+                <% } else if (page.type === '404') { %>
+
+                    <%- partial('404') %>
 
                 <% } else { %>
 
@@ -61,7 +64,7 @@
     <!-- post tools -->
     <% if (is_post()) { %>
         <div class="post-tools <%= theme?.toc?.layout === 'left' ? 'left-toc' : 'right-toc' %>">
-            <%- partial('_partial/post-tools') %>
+            <%- partial('_partial/post/post-tools') %>
         </div>
     <% } %>
 
@@ -89,3 +92,13 @@
 </main>
 
 
+
+<meting-js
+    server="netease"
+    type="playlist"
+    id="8068706874"
+    fixed="true"
+    order="random"
+    loop="all"
+    theme="#D6AB4A">
+</meting-js>

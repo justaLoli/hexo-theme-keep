@@ -1,14 +1,14 @@
 $archive-year-font-size = 1.6rem
-$article-title-font-size = 1.2rem
-$article-date-font-size = 1rem
-$article-date-width = 3.6rem
-$article-item-padding = 1.2rem
+$post-title-font-size = 1.2rem
+$post-date-font-size = 1rem
+$post-date-width = 3.6rem
+$post-item-padding = 1.2rem
 $timeline-circle-width = 0.6rem
 
 .archive-list-container {
 
   .archive-item {
-    margin-bottom $component-spacing-value
+    margin-bottom var(--components-spacing)
 
     &:last-child {
       margin-bottom 0
@@ -30,55 +30,95 @@ $timeline-circle-width = 0.6rem
     }
 
 
-    .article-list {
-      padding-left $article-item-padding
+    .archive-item-body {
+      padding-left $post-item-padding
 
-
-      .article-item {
+      .post-item {
         display flex
         align-items center
         justify-content space-between
         width 100%
-        padding ($article-item-padding * 0.68) 0 ($article-item-padding * 0.68) $article-item-padding
+        padding ($post-item-padding * 0.8) 0 ($post-item-padding * 0.8) $post-item-padding * 1.6
         font-size 1rem
-        border-left 1px dashed var(--border-color)
+        // display flex
+        // align-items center
+        // justify-content space-between
+        // width 100%
+        // padding ($post-item-padding * 0.68) 0 ($post-item-padding * 0.68) $post-item-padding
+        // font-size 1rem
+        // border-left 1px dashed var(--border-color)
 
-        &::before {
+        // &::before {
+        //   position absolute
+        //   top 50%
+        //   left -($timeline-circle-width * 0.5)
+        //   z-index $z-index-1
+        //   box-sizing border-box
+        //   width $timeline-circle-width
+        //   height $timeline-circle-width
+        //   background var(--text-color-5)
+        //   border-radius 50%
+        //   transform translateY(-50%)
+        //   content ''
+        // }
+        .starting-point {
           position absolute
-          top 50%
-          left -($timeline-circle-width * 0.5)
-          z-index $z-index-1
-          box-sizing border-box
-          width $timeline-circle-width
-          height $timeline-circle-width
-          background var(--text-color-5)
-          border-radius 50%
-          transform translateY(-50%)
-          content ''
+          top 0
+          left 0
+          width 1rem
+          height 100%
+          
+          &::after {
+            position absolute
+            top 0
+            left 50%
+            z-index $z-index-1
+            box-sizing border-box
+            width 0
+            height 100%
+            border-left 1px dashed var(--text-color-5)
+            transform translateX(-50%)
+            content ''
+          }
+
+          &::before {
+              top 50%
+              left 0
+              z-index $z-index-2
+              box-sizing border-box
+              width $timeline-circle-width
+              height $timeline-circle-width
+              background var(--text-color-5)
+              border-radius 50%
+              content ''
+              transition-t("height", "0", "0.2", "ease")
+            }
         }
 
 
         &:hover {
-          &::before {
-            background var(--text-color-4)
+          .starting-point {
+            &::before {
+              background var(--text-color-4)
+            }
           }
 
 
-          a.article-title {
+          a.post-title {
             color var(--primary-color)
           }
         }
 
-        .article-date {
-          width $article-date-width
-          margin-right $article-item-padding
+        .post-date {
+          width $post-date-width
+          margin-right $post-item-padding
           color var(--text-color-3)
-          font-size $article-date-font-size
+          font-size $post-date-font-size
         }
 
 
-        a.article-title {
-          width 'calc(100% - %s)' % $article-date-width
+        a.post-title {
+          width 'calc(100% - %s)' % $post-date-width
           color var(--text-color-3)
         }
       }

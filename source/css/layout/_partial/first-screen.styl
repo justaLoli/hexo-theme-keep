@@ -1,34 +1,32 @@
-// if (hexo-config('style') && hexo-config('style.first_screen')) {
-//   $temp-img = hexo-config('style.first_screen.background_img')
-// }
-// else {
-//   $temp-img = ''
-// }
+if (hexo-config('first_screen')) {
+  $temp-fs-bg-img-light = hexo-config('first_screen.background_img')
+  $temp-fs-bg-img-dark = hexo-config('first_screen.background_img_dark')
+}
+else {
+  $temp-fs-bg-img-light = ''
+  $temp-fs-bg-img-dark = ''
+}
 
+$fs-bg-img-light = $temp-fs-bg-img-light ? $temp-fs-bg-img-light : '/images/bg.svg'
+$fs-bg-img-dark = $temp-fs-bg-img-dark ? $temp-fs-bg-img-dark : $fs-bg-img-light
 
-
-$first-screen-img = var(--firstscreen-background-img)
-
-$first-screen-font-color = var(--firstscreen-font-color)
+$root = hexo-config('root')
 
 .first-screen-container {
   width 100%
   height 100vh
   overflow hidden
-  background $first-screen-img center center / cover no-repeat
+  background-image url($root + $fs-bg-img-light)
+  background-position-x center
+  background-position-y center
+  background-size cover
+  background-repeat-x no-repeat
+  background-repeat-y no-repeat
 
-  if (hexo-config('style') && hexo-config('style.first_screen') && !(hexo-config('style.first_screen.header_transparent') == true)) {
-    background-position-y var(--header-height)
 
-    +keep-tablet() {
-      background-position-y calc(var(--header-height) * 0.9)
-    }
-
-    +keep-mobile() {
-      background-position-y calc(var(--header-height) * 0.8)
-    }
+  .dark-mode & {
+    background-image url($root + $fs-bg-img-dark)
   }
-
 
   .first-screen-content {
     display flex
@@ -48,24 +46,37 @@ $first-screen-font-color = var(--firstscreen-font-color)
     }
 
     .description {
-      color $first-screen-font-color
+      display var(--first-screen-display)
+      color var(--first-screen-font-color-light)
       font-weight bold
       font-size var(--first-screen-font-size)
+      font-family var(--first-screen-font-family)
       line-height 1.8
       text-align center
+      transform translateY(var(--first-screen-font-offset))
+      opacity 0
 
       .dark-mode & {
-        color $first-screen-font-color
+        color var(--first-screen-font-color-dark)
 
         .desc-item {
-          color $first-screen-font-color
+          .desc
+          .cursor {
+            color var(--first-screen-font-color-dark)
+          }
         }
       }
 
 
       .desc-item {
-        color $first-screen-font-color
-        font-family STSong
+        .desc {
+          color var(--first-screen-font-color-light)
+        }
+
+        .cursor {
+          color var(--first-screen-font-color-light)
+          animation blink-caret 0.8s step-end infinite
+        }
       }
 
 
@@ -81,20 +92,57 @@ $first-screen-font-color = var(--firstscreen-font-color)
       .sc-icon-list {
         display flex
         justify-content center
-        box-sizing border-box
-        font-size var(--first-screen-icon-size)
-
-
-        +keep-tablet() {
-          font-size calc(var(--first-screen-icon-size) * 0.9)
-        }
 
         .sc-icon-item {
+          display flex
+          align-items center
           margin 0 1rem
           cursor pointer
 
           i {
-            color var(--text-color-3)
+            color var(--first-screen-icon-color-light)
+            font-size var(--first-screen-icon-size)
+          }
+
+
+          svg {
+            width var(--first-screen-icon-size)
+            height var(--first-screen-icon-size)
+
+            path {
+              fill var(--first-screen-icon-color-light)
+            }
+          }
+
+
+          .dark-mode & {
+            i {
+              color var(--first-screen-icon-color-dark)
+            }
+
+            svg {
+              path {
+                fill var(--first-screen-icon-color-dark)
+              }
+            }
+          }
+
+
+          +keep-tablet() {
+            i {
+              font-size calc(var(--first-screen-icon-size) * 0.9)
+            }
+
+            svg {
+              width calc(var(--first-screen-icon-size) * 0.9)
+              height calc(var(--first-screen-icon-size) * 0.9)
+            }
+          }
+
+
+          a {
+            display flex !important
+            align-items center !important
           }
         }
       }

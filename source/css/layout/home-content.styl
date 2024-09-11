@@ -1,12 +1,74 @@
 .home-content-container {
   background var(--background-color-1)
 
+  if (hexo-config('home') && hexo-config('home.announcement')) {
+    .website-announcement {
+      keep-container(var(--home-post-hover-scale), 1rem, 1.8rem)
+      display flex
+      align-items center
+      justify-content space-between
+      margin-top -0.6rem
 
-  .home-article-list {
+      +keep-tablet() {
+        margin-top -0.4rem
+      }
 
-    .home-article-item {
+
+      +keep-mobile() {
+        margin-top -0.2rem
+
+        .announcement {
+          font-size 0.9rem
+        }
+
+        .icon {
+          font-size 1rem !important
+        }
+      }
+
+
+      .announcement {
+        width 100%
+        padding 0 0.5rem
+        color var(--text-color-3)
+
+        p {
+          width 100%
+          overflow hidden
+          white-space nowrap
+          text-overflow ellipsis
+        }
+      }
+
+
+      .icon {
+        flex-shrink 0
+        padding 0.2rem
+        font-size 1.2rem
+
+        &.left {
+          color var(--keep-danger-color)
+          font-size 1.5rem
+          transform-origin left bottom
+          animation shake 1s ease infinite
+        }
+
+        &.right {
+          color var(--text-color-4)
+          cursor pointer
+
+          &:hover {
+            color var(--text-color-3)
+          }
+        }
+      }
+    }
+  }
+
+  .home-post-list {
+
+    .home-post-item {
       position relative
-      overflow hidden
 
       keep-container(var(--home-post-hover-scale), 0, 2.8rem)
 
@@ -48,10 +110,12 @@
       }
 
 
-      .home-article-item-top {
+      .home-post-item-top {
         width 100%
         overflow hidden
         background-color var(--background-color-2)
+        border-top-left-radius var(--box-border-radius)
+        border-top-right-radius var(--box-border-radius)
 
         +keep-tablet() {
           height 7rem
@@ -61,7 +125,7 @@
           height 6rem
         }
 
-        .cover-img {
+        .home-cover {
           width 100%
           height 100%
           object-fit cover
@@ -75,7 +139,7 @@
       }
 
 
-      .home-article-item-bottom {
+      .home-post-item-bottom {
         padding 2rem
 
         .sticky-icon {
@@ -88,7 +152,7 @@
         }
 
 
-        .home-article-title {
+        .home-post-title {
           margin 0
           color var(--text-color-2)
           font-weight 600
@@ -107,7 +171,7 @@
         }
 
 
-        .home-article-content {
+        .home-post-content {
           margin 1.8rem 0
           color var(--text-color-3)
           text-align justify

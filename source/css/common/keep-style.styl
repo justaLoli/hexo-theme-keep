@@ -64,13 +64,6 @@ keep-mobile() {
 
 
 root-color(mode) {
-  
-
-  //first screen background img
-  --firstscreen-background-img mode == 'light' ? url($first-screen-img) : url($dark-first-screen-img)
-  --firstscreen-font-color mode == 'light' ? $first-screen-font-color : $dark-first-screen-font-color
-
-
   // primary color
   --primary-color $primary-color
   --primary-color-light-1 $primary-color-light-1
@@ -130,12 +123,35 @@ root-color(mode) {
   // pjax progress bar color
   --pjax-progress-bar-color mode == 'light' ? $pjax-progress-bar-color : $dark-pjax-progress-bar-color
 
-  // article aging tips primary color
-  --article-aging-tips-color mode == 'light' ? $article-aging-tips-color : $dark-article-aging-tips-color
-  --article-aging-tips-background-color mode == 'light' ? $article-aging-tips-background-color : $dark-article-aging-tips-background-color
-  --article-aging-tips-border-color mode == 'light' ? $article-aging-tips-border-color : $dark-article-aging-tips-border-color
-
+  // h tag bottom border color
   --post-h-bottom-border-color mode == 'light' ? $post-h-bottom-border-color : $dark-post-h-bottom-border-color
+
+  // keep info color
+  --keep-info-color mode == 'light' ? $keep-info-color : $dark-keep-info-color
+  --keep-info-background-color mode == 'light' ? $keep-info-background-color : $dark-keep-info-background-color
+  --keep-info-border-color mode == 'light' ? $keep-info-border-color : $dark-keep-info-border-color
+
+  // keep primary color
+  --keep-primary-color mode == 'light' ? $keep-primary-color : $dark-keep-primary-color
+  --keep-primary-background-color mode == 'light' ? $keep-primary-background-color : $dark-keep-primary-background-color
+  --keep-primary-border-color mode == 'light' ? $keep-primary-border-color : $dark-keep-primary-border-color
+
+  // keep warning color
+  --keep-warning-color mode == 'light' ? $keep-warning-color : $dark-keep-warning-color
+  --keep-warning-background-color mode == 'light' ? $keep-warning-background-color : $dark-keep-warning-background-color
+  --keep-warning-border-color mode == 'light' ? $keep-warning-border-color : $dark-keep-warning-border-color
+
+  // keep success color
+  --keep-success-color mode == 'light' ? $keep-success-color : $dark-keep-success-color
+  --keep-success-background-color mode == 'light' ? $keep-success-background-color : $dark-keep-success-background-color
+  --keep-success-border-color mode == 'light' ? $keep-success-border-color : $dark-keep-success-border-color
+
+  // keep danger color
+  --keep-danger-color mode == 'light' ? $keep-danger-color : $dark-keep-danger-color
+  --keep-danger-background-color mode == 'light' ? $keep-danger-background-color : $dark-keep-danger-background-color
+  --keep-danger-border-color mode == 'light' ? $keep-danger-border-color : $dark-keep-danger-border-color
+  
+  --first-screen-desc-bg-color mode == 'light' ? $first-screen-description-barkground-color : $dark-first-screen-description-barkground-color
 }
 
 
