@@ -1,0 +1,249 @@
+// ADDED: documentations page
+// 三栏文档页：左多页导航 / 中正文 / 右页内 TOC
+
+.documentations-page {
+  &.page-container .page-main-content {
+    padding-top: 0;
+  }
+
+  &.page-container .page-main-content-middle .main-content {
+    width: 94%;
+    max-width: 1680px;
+  }
+
+  .doc-layout {
+    display: grid;
+    grid-template-columns: 13.5rem minmax(0, 1fr) 11.5rem;
+    grid-template-areas: 'nav body toc';
+    gap: 1.8rem;
+    align-items: start;
+
+    &.no-toc {
+      grid-template-columns: 13.5rem minmax(0, 1fr);
+      grid-template-areas: 'nav body';
+    }
+  }
+
+  // ---------------------------------------------------------------- 左侧导航
+  .doc-nav-side {
+    grid-area: nav;
+    position: sticky;
+    top: 1rem;
+    max-height: calc(100vh - 2rem);
+    overflow: hidden auto;
+    align-self: start;
+  }
+
+  .doc-nav-title {
+    margin-bottom: 0.7rem;
+    padding: 0 0.7rem;
+    color: var(--text-color-2);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .doc-nav-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .doc-nav-list li + li {
+    margin-top: 0.3rem;
+  }
+
+  .doc-nav-list a {
+    display: block;
+    padding: 0.45rem 0.7rem;
+    color: var(--text-color-3);
+    font-size: 0.92rem;
+    line-height: 1.5;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    overflow-wrap: break-word;
+  }
+
+  .doc-nav-list a:hover {
+    color: var(--primary-color);
+  }
+
+  .doc-nav-list a.is-active {
+    color: var(--primary-color);
+    font-weight: 600;
+    box-shadow: inset 0.14rem 0 0 var(--primary-color);
+  }
+
+  // ---------------------------------------------------------------- 正文
+  .doc-body {
+    grid-area: body;
+    min-width: 0;
+    padding: 0 2rem;
+
+    > :first-child {
+      margin-top: 0;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+
+    h1
+    h2
+    h3
+    h4 {
+      scroll-margin-top: 1rem;
+    }
+  }
+
+  // ---------------------------------------------------------------- 右侧 TOC
+  .doc-toc-side {
+    grid-area: toc;
+    position: sticky;
+    top: 1rem;
+    max-height: calc(100vh - 2rem);
+    overflow: hidden auto;
+    align-self: start;
+    font-size: 0.84rem;
+  }
+
+  .doc-toc-title {
+    margin-bottom: 0.5rem;
+    padding-left: 0.6rem;
+    color: var(--text-color-4);
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+  }
+
+  .doc-toc-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-left: 1px solid var(--border-color);
+  }
+
+  .doc-toc-item a {
+    display: block;
+    margin-left: -1px;
+    padding: 0.25rem 0.6rem;
+    color: var(--text-color-4);
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+      color: var(--text-color-3);
+    }
+
+    &.is-active {
+      color: var(--primary-color);
+      border-left-color: var(--primary-color);
+    }
+  }
+
+  .doc-toc-item.level-1 a {
+    padding-left: 0.6rem;
+    color: var(--text-color-3);
+    font-weight: 600;
+  }
+
+  .doc-toc-item.level-3 a {
+    padding-left: 1.2rem;
+  }
+
+  .doc-toc-item.level-4 a {
+    padding-left: 1.8rem;
+    font-size: 0.8rem;
+  }
+
+  // ---------------------------------------------------------------- 移动端折叠块
+  .doc-nav-mobile,
+  .doc-toc-mobile {
+    display: none;
+  }
+
+  .doc-nav-mobile,
+  .doc-toc-mobile {
+    padding: 0.7rem 1rem;
+    background: var(--background-color-2);
+    border-radius: var(--box-border-radius);
+    box-shadow: 0 0 8px var(--shadow-color);
+
+    > summary {
+      color: var(--text-color-3);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      cursor: pointer;
+      list-style: none;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &::before {
+        margin-right: 0.5rem;
+        color: var(--primary-color);
+        content: '☰';
+      }
+    }
+
+    &[open] > summary {
+      margin-bottom: 0.4rem;
+    }
+  }
+
+  .doc-nav-mobile {
+    grid-area: navm;
+  }
+
+  .doc-toc-mobile {
+    grid-area: tocm;
+  }
+
+  .doc-toc-mobile .doc-toc-list {
+    border-left: none;
+  }
+
+  // ---------------------------------------------------------------- 响应式
+  @media (max-width: 1150px) {
+    .doc-layout {
+      grid-template-columns: 13.5rem minmax(0, 1fr);
+      grid-template-areas: 'nav tocm' 'nav body';
+
+      &.no-toc {
+        grid-template-areas: 'nav body';
+      }
+    }
+
+    .doc-toc-side {
+      display: none;
+    }
+
+    .doc-toc-mobile {
+      display: block;
+    }
+  }
+
+  @media (max-width: 800px) {
+    .doc-layout,
+    .doc-layout.no-toc {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: 'navm' 'tocm' 'body';
+    }
+
+    .doc-nav-side,
+    .doc-toc-side {
+      display: none;
+    }
+
+    .doc-nav-mobile {
+      display: block;
+    }
+
+    .doc-body {
+      padding: 0 1rem;
+    }
+  }
+}

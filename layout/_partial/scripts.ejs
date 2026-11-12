@@ -54,6 +54,11 @@
     <% if (is_current('/photos') || is_current('/photo')) { %>
         <%- __js('js/page/photos-page.js') %>
     <% } %>
+
+    <!-- ADDED: documentations-page -->
+    <% if (page?.docBase) { %>
+        <%- __js('js/page/documentations-page.js') %>
+    <% } %>
 </div>
 
 <!-- mermaid -->

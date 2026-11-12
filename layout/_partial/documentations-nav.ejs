@@ -1,0 +1,10 @@
+<ul class="doc-nav-list">
+    <% (page.docNav || []).forEach(function (item) { %>
+        <li>
+            <a class="<%= item.slug === page.docCurrent ? 'is-active' : '' %>"
+               <% if (item.slug === page.docCurrent) { %>aria-current="page"<% } %>
+               href="<%- url_for(item.url) %>"
+            ><%= item.name %></a>
+        </li>
+    <% }) %>
+</ul>

@@ -1,0 +1,52 @@
+<%
+const hasToc = page.docToc && page.docToc.length > 0
+%>
+<main class="page-container documentations-page border-box">
+    <div class="page-main-content border-box">
+        <div class="page-main-content-middle border-box">
+            <div class="main-content border-box doc-layout <%= hasToc ? '' : 'no-toc' %>"
+                 data-doc-index="<%= page.docIsIndex ? '1' : '0' %>"
+                 data-doc-first="<%- page.docFirstUrl ? url_for(page.docFirstUrl) : '' %>">
+
+                <details class="doc-nav-mobile">
+                    <summary><%= page.docTitle %></summary>
+                    <nav aria-label="<%= page.docTitle %>"><%- partial('_partial/documentations-nav') %></nav>
+                </details>
+
+                <aside class="doc-nav-side">
+                    <div class="doc-nav-title"><%= page.docTitle %></div>
+                    <nav aria-label="<%= page.docTitle %>"><%- partial('_partial/documentations-nav') %></nav>
+                </aside>
+
+                <% if (hasToc) { %>
+                    <details class="doc-toc-mobile">
+                        <summary>本页目录</summary>
+                        <%- partial('_partial/documentations-toc') %>
+                    </details>
+                <% } %>
+
+                <article class="doc-body keep-markdown-body">
+                    <%- page.body %>
+                </article>
+
+                <% if (hasToc) { %>
+                    <aside class="doc-toc-side">
+                        <div class="doc-toc-title">本页目录</div>
+                        <%- partial('_partial/documentations-toc') %>
+                    </aside>
+                <% } %>
+
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            <%- partial('_partial/footer') %>
+        </div>
+    </div>
+
+    <div class="side-tools">
+        <%- partial('_partial/side-tools') %>
+    </div>
+
+    <%- partial('_partial/image-mask') %>
+</main>
