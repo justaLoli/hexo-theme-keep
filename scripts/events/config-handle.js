@@ -38,6 +38,11 @@ hexo.on('generateBefore', function () {
         hexo.theme.config.links = data.links
       }
 
+      // ADDED: tools data
+      if (data.tools) {
+        hexo.theme.config.tools = data.tools
+      }
+
       // custom social contact icon data
       if (data.icons) {
         hexo.theme.config.icons = data.icons
