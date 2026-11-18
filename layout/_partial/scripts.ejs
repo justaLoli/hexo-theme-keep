@@ -54,6 +54,11 @@
     <% if (is_current('/photos') || is_current('/photo')) { %>
         <%- __js('js/page/photos-page.js') %>
     <% } %>
+
+    <!-- ADDED: tools-page -->
+    <% if (is_current('/tools') || is_current('/tool')) { %>
+        <%- __js('js/page/tools-page.js') %>
+    <% } %>
 </div>
 
 <!-- mermaid -->

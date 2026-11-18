@@ -1,9 +1,12 @@
 <%
 const page_title = page.title.toLowerCase()
 const use_page_template = page?.use_template !== false
-const { menu: t_menu, links: links_data, photos: photos_data } = theme
+const { menu: t_menu, links: links_data, photos: photos_data, tools: tools_data } = theme
 const use_friends_link = (
   t_menu?.Links && links_data && (page_title === 'links' || page_title === 'link')
+)
+const use_tools = (
+  tools_data && (page_title === 'tools' || page_title === 'tool')
 )
 const use_photo_album = (
   t_menu?.Photos && photos_data && (page_title === 'photos' || page_title === 'photo')
@@ -35,6 +38,9 @@ const use_photo_album = (
                     <h1><%= page_title.toUpperCase() %></h1>
                 <% } %>
             </div>
+            <% if (use_tools && use_page_template) { %>
+                <%- partial('_partial/templates/tools-nav') %>
+            <% } %>
 
             <% if (page?.comment === true) { %>
                 <%- partial('_partial/comment/comment') %>
