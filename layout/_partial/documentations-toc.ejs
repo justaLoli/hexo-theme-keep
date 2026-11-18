@@ -1,0 +1,7 @@
+<ul class="doc-toc-list">
+    <% (page.docToc || []).forEach(function (item) { %>
+        <li class="doc-toc-item level-<%= item.level %>">
+            <a href="#<%= item.id %>"><%= item.text %></a>
+        </li>
+    <% }) %>
+</ul>
